@@ -1,5 +1,5 @@
 import pandas as pd
-import config
+from src import config
 from sklearn.model_selection import train_test_split
 
 
@@ -9,6 +9,10 @@ def load_raw_data() -> pd.DataFrame:
     df = pd.read_csv(config.RAW_DATA_PATH)
     return df
 
+def X_y(df):
+    X = df.drop(columns=[config.TARGET_COLUMN])
+    y = df[config.TARGET_COLUMN]
+    return X, y
 
 def split_data(df: pd.DataFrame):
     """
@@ -35,10 +39,10 @@ def load_and_split():
 
 def save_processed_data(X_train, X_test, y_train, y_test):
     """Save the scaled/processed splits so they don't need recomputing."""
-    X_train.to_parquet(f"{config.PROCESSED_DIR}/X_train.parquet")
-    X_test.to_parquet(f"{config.PROCESSED_DIR}/X_test.parquet")
-    y_train.to_frame().to_parquet(f"{config.PROCESSED_DIR}/y_train.parquet")
-    y_test.to_frame().to_parquet(f"{config.PROCESSED_DIR}/y_test.parquet")
+    X_train.to_parquet(config.PROCESSED_DIR /"X_train.parquet")
+    X_test.to_parquet(config.PROCESSED_DIR /"X_test.parquet")
+    y_train.to_frame().to_parquet(config.PROCESSED_DIR / "y_train.parquet")
+    y_test.to_frame().to_parquet(config.PROCESSED_DIR / "y_test.parquet")
 
 
 def load_processed_data():
