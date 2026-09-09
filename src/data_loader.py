@@ -1,7 +1,7 @@
 import pandas as pd
-from src import config
 from sklearn.model_selection import train_test_split
 
+from src import config
 
 
 def load_raw_data() -> pd.DataFrame:
