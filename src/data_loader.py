@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 def load_raw_data() -> pd.DataFrame:
     """LOADS The raw CSV into a DataFrame, no transformations applied yet """
     df = pd.read_csv(config.RAW_DATA_PATH)
+    df = df.drop_duplicates()
     return df
 
 def X_y(df):
