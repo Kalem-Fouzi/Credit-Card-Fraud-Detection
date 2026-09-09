@@ -1,0 +1,6 @@
+[project]
+name = "credit_card_fraud"
+version = "0.1.0"
+
+[tool.setuptools]
+packages = ["src"]
